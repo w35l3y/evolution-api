@@ -40,7 +40,7 @@ import { ProxyService } from './services/proxy.service';
 import { SettingsService } from './services/settings.service';
 import { TemplateService } from './services/template.service';
 
-import pgPathToMysql from './extenstions/prismaExtensionPgpathToMysql';
+import pgPathToMysql from './extensions/prismaExtensionPgpathToMysql';
 
 const logger = new Logger('WA MODULE');
 
@@ -57,7 +57,7 @@ if (configService.get<ProviderSession>('PROVIDER').ENABLED) {
   providerFiles = new ProviderFiles(configService);
 }
 
-let extendablePrismaRepository = new PrismaRepository(configService)
+let extendablePrismaRepository: PrismaRepository = new PrismaRepository(configService)
 if (configService.get<Database>('DATABASE').PROVIDER === "mysql") {
   extendablePrismaRepository = extendablePrismaRepository.$extends(pgPathToMysql);
 }
