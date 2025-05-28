@@ -41,6 +41,7 @@ import { SettingsService } from './services/settings.service';
 import { TemplateService } from './services/template.service';
 
 import pgPathToMysql from './extensions/prismaExtensionPgpathToMysql';
+import { estenderComProxy } from './utils/estenderComProxy';
 
 const logger = new Logger('WA MODULE');
 
@@ -59,7 +60,7 @@ if (configService.get<ProviderSession>('PROVIDER').ENABLED) {
 
 let extendablePrismaRepository: PrismaRepository = new PrismaRepository(configService)
 if (configService.get<Database>('DATABASE').PROVIDER === "mysql") {
-  extendablePrismaRepository = extendablePrismaRepository.$extends(pgPathToMysql);
+  extendablePrismaRepository = estenderComProxy(extendablePrismaRepository, pgPathToMysql);
 }
 export const prismaRepository = extendablePrismaRepository;
 
