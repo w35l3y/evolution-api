@@ -41,7 +41,7 @@ import { SettingsService } from './services/settings.service';
 import { TemplateService } from './services/template.service';
 
 import pgPathToMysql from './extensions/prismaExtensionPgpathToMysql';
-import { estenderComProxy } from './utils/estenderComProxy';
+import { estenderComProxy } from '@utils/estenderComProxy';
 
 const logger = new Logger('WA MODULE');
 
